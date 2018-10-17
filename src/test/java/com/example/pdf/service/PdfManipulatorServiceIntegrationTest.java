@@ -1,0 +1,27 @@
+package com.example.pdf.service;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.context.junit4.SpringRunner;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = WebEnvironment.NONE)
+public class PdfManipulatorServiceIntegrationTest {
+
+	@Autowired
+	private PdfManipulatorService pdfManipulatorService;
+	
+	@Test
+	public void testReadPdf() throws FileNotFoundException, IOException {
+		File file = new File("src/main/resources/test/fillable_example.pdf");
+		pdfManipulatorService.test(new FileInputStream(file));
+	}
+}
