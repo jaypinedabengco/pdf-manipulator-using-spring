@@ -66,15 +66,53 @@
 			<artifactId>pdfbox</artifactId>
 			<version>2.0.4</version>
 		</dependency>
+		<!-- Aspose -->
 		<dependency>
 			<groupId>com.aspose</groupId>
 			<artifactId>aspose-pdf</artifactId>
 			<version>18.8</version>
 		</dependency>
+		<!-- mustache -->
 		<dependency>
 			<groupId>com.github.spullara.mustache.java</groupId>
 			<artifactId>compiler</artifactId>
 			<version>0.9.4</version>
+		</dependency>
+		<!-- itext -->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>kernel</artifactId>
+			<version>7.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>io</artifactId>
+			<version>7.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>layout</artifactId>
+			<version>7.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>forms</artifactId>
+			<version>7.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>pdfa</artifactId>
+			<version>7.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>pdftest</artifactId>
+			<version>7.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>html2pdf</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 	</dependencies>
 
@@ -108,6 +146,11 @@
 			<id>AsposeJavaAPI</id>
 			<name>Aspose Java API</name>
 			<url>https://artifact.aspose.com/repo/</url>
+		</repository>
+		<repository>
+			<id>itext</id>
+			<name>iText Repository - releases</name>
+			<url>https://repo.itextsupport.com/releases</url>
 		</repository>
 	</repositories>
 
