@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -68,7 +70,7 @@ public class ItextCheckIfTextWillExceedForm {
 
 		// set font
 		// sampleText1.setFont(PdfFontFactory.createFont());
-		sampleText1.setFontSize(5);
+		// sampleText1.setFontSize(5);
 
 		form.addField(sampleText1);
 
@@ -142,23 +144,39 @@ public class ItextCheckIfTextWillExceedForm {
 						|| PdfName.Text.equals(entry.getValue().getFormType()))
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
+		// reference_id && actual text
+		List<String> addendum = new ArrayList<>();
 		textFields.forEach((name, textField) -> {
 
+			// will get this from the mapping
+			String text = "I'm the long and wind";
+
+			float originalFontSize = getFontSize(textField);
 			PdfFont font = getFont(pdfDoc, textField);
-			float fontSize = getFontSize(textField);
 			Rectangle rectangle = getRectangle(textField);
-			
-			String content = "I will exceed!!!!!!!!!!!!";
-			double expectedWidthOnField = font.getContentWidth(new PdfString(content)) * font.getFontMatrix()[0] * fontSize;
-			double containerWidth = rectangle.getWidth();
-			
-			System.out.println(expectedWidthOnField + " : " + containerWidth);
-			
-			// if will exceed
-			if ( expectedWidthOnField > containerWidth ) {
-				
+
+			boolean willExceed = willTextExceedContainer(font, originalFontSize, rectangle, text);
+
+			// if exceed, try to apply logic for minifying text
+			if (willExceed) {
+				// will check if text will fit after 3 tries
+				float fontSizeThatWillFit = getFontSizeThatWillFitTextContainer(font, originalFontSize, rectangle, text, 3, 1);
+
+				// change font size, so that it will fit
+				if (fontSizeThatWillFit > 0) {
+					textField.setFontSize(fontSizeThatWillFit);
+				} else {
+
+					// add to addendum
+					addendum.add(text);
+					int addendumId = addendum.size();
+					// change text
+					text = "addendum # " + addendumId;
+				}
 			}
-			System.out.println("OK");
+
+			textField.setValue(text);
+			
 		});
 
 		pdfDoc.close();
@@ -203,4 +221,54 @@ public class ItextCheckIfTextWillExceedForm {
 				.orElse(null);
 	}
 
+	/**
+	 * 
+	 * @param document
+	 * @param field
+	 * @param text
+	 * @param fontSize
+	 * @return
+	 */
+//	private boolean willTextExceedContainer(PdfDocument document, PdfFormField field, String text, float fontSize) {
+//		PdfFont font = getFont(document, field);
+//		Rectangle rectangle = getRectangle(field);
+//		return willTextExceedContainer(font, fontSize, rectangle, text);
+//	}
+
+	/**
+	 * 
+	 * @param font
+	 * @param fontSize
+	 * @param rectangle
+	 * @param text
+	 * @return
+	 */
+	private boolean willTextExceedContainer(PdfFont font, float fontSize, Rectangle rectangle, String text) {
+		double expectedWidthOnField = font.getContentWidth(new PdfString(text)) * font.getFontMatrix()[0] * fontSize;
+		double containerWidth = rectangle.getWidth();
+		return expectedWidthOnField > containerWidth;
+	}
+
+	/**
+	 * 
+	 * @param document
+	 * @param field
+	 * @param text
+	 * @param originalFontSize
+	 * @param reduction
+	 * @param textSizePerReduction
+	 * @return
+	 */
+	private float getFontSizeThatWillFitTextContainer(PdfFont font, float fontSize, Rectangle rectangle, String text, int reduction, int textSizePerReduction) {
+		boolean ableToFit = false;
+		float adjustableFontSize = fontSize;
+		do {
+			reduction--;
+			adjustableFontSize = adjustableFontSize - textSizePerReduction;
+			ableToFit = !willTextExceedContainer(font, adjustableFontSize, rectangle, text);
+		} while (ableToFit == false && reduction > 0);
+
+		return ableToFit ? adjustableFontSize : 0;
+
+	}
 }
