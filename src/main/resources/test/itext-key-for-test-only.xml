@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<license date="2018-10-24" issuer="iText Group NV" library="3">
+    <licensee expire="2018-11-24">
+        <name>jay bengco</name>
+        <email>jaybengcodeveloper@gmail.com</email>
+        <company>developonly</company>
+        <version>7.1</version>
+        <key/>
+        <licensetype>trial</licensetype>
+        <comment>Trial License</comment>
+        <signature>SjuH0Y3Lmv+ICbPGVlepFzYPmaNEtBZ7oeN/9uRW+dUSgOmY47gLsaioFxa8RZRYxKvXKMnhl8LmfeqNUehbQ8+6H4K5Sv1lMAYt8L2J1TnQoiiSSFOFyLez0v3/7q55s/LAaYMvcuEptiMlPzJzi1y6P5pb0odXncSy2CgxkBsoWNkzR0rTSjHI664YfiLBlp4pL/vURPstICiIeuP+eGMw5FaW4F7n0JxpDmXn81Rf/rskmuvldNIApAA3lQmwJlk83FPfIyGrGPpIJVMGJLSQhh3zX75c+/HBATHfaQKpet3iljxql2gOTdxkuQCzP0Fv/ynCF8sgKxMTl6j0zd6MSLmUsA/PCyPOM1vRpEhe4c/CRIRkU9nr8n7VT3eVRVSw/COpH1ic06FBNXqUMMockL5EQe/AqwKU4Xtd7owA1GGRSdSfQZhLr5b7Kcaff3NE8jETjIAXE0+iKJyV00sQ/ODMLh/lsBD6cp6Zz9rRIImO6PMEODUAD4CPXlb5uhh/W77z6VgUIDuWvvkzC8du709JfOR11IBGyxiunPhcwiXBAJ2AgTpjtB5mebIqRTuDnW1xEKS/yCU3K3QPjudthVkxHXWboop0fiGXSl5otEUGsm3BWJrYRZHgoiZ8cv2ij1aM53qzPj5Iy4m/5ussSIEC7++EbEBx4jr6UkQ=</signature>
+    </licensee>
+    <product deploymenttype="" expire="2018-11-24" licensetype="trial" major="2" name="pdfSweep" platform="any">
+        <signature>Gve++AZ3grz1d6Co3EI1tU15RVyQ+ASUnrdJ1jYsznY9IrqUGqWge9Ln9FfoyIh9JwJKP/h57ABHYLxMQ2thbMzIE8Coc7iiNMqTXo58wzoxWcIZimNkbaXhQik7Pkgz0mjT3JT1nHrqiWqxsdaarnixwqb3GeOsi5G+slgy6haWSg7nVLuf111Jac61uj8stPwfbOhTpsV/WjtfSrDTr6P96HiujGIJHpL3075ZXWWQIaEbfs/tAtqNI31VzwfyRH7dCnh9M9d5twGwk8iwEcaumkG1SixjDZhJHPaCMr/Pcz2hqy9EavnSZIgYyuXejM7/PrXwSsxJLlHJGIuNHWqPAqTXKcwPIkNg8j3veox90jNbU2qBBBcTAvIEgS5yz4IXNc6s+URL6b5avNTJscpR6HRyYQb1164jVx6GTpd7XqwzsdERQLwjMz9V++UGPpCTKP1MdrpjmeezxPOo/boiE0tUP8ZOFTT/IWukbmBt08oZn1XhqwnzCPagTgenw7+DBMStFatUWTCI3esOX7U29L2VwoklaAdREAEszyZCfXbpKB0y+FkI8/9VQWjDkjr6TgctAb3AB/7qX0RrHBVmzpZeJwitEOVDP9aWdK916o+Vrz5L6lEaNOiNkIH04TIE55yyVtPUNR1gHe6KB5k3uMxXP8U+lpfCtgt7OiQ=</signature>
+    </product>
+    <product deploymenttype="" expire="2018-11-24" licensetype="trial" major="2" name="pdfInvoice" platform="any">
+        <signature>EwgQPWLY58rO098mnhF9InamMULSIlQ2TwliNmCKZFB/cuKz1cMVj3EIICvp9IBjkqf5/sgLjtLT72+DWpJiGMR+3AR4PKJDORjvuyVkyK9QTuQx1xu/ze9ziRV3tHI84Lb4Br1VOB7OHRHNf3uHJXZH3AWdaA6B47sBppFdjEqBbnEV1n9ImKP70luGtv7BsRtt/N3icJxKbUXZSu/SikBwWbHI/77+4P/zLbjjeXK1um+ElHO6YfBcSeI3W8F/z/zMIWUNq6SHWl9744z9F4Yxg4LvL/yCMjfTMJSJJo8mgLFJsTW9NHwLTjKIa/Yz2a+pHRDXGYsq34PmH6iF+6tQMWDu7Sd4FkmkUnkItXlylz/2tBboGUBTRei/qyDmRmKwPhofaFlfw6HvJNXy0dHFxPKoTUSNUEnKEJORDeR2e3aVdDHfH3W6Fs7bzFJJpqCW+gnLMvuTqi9lUisU9CQIZV9T/2pS3UiggkXAyuSAGPWcjU6yU4hKu/IDQAvEku3HMi65t4lGet/JnhTWxS87xfbjiAEu1Ir1y1sxu6PSXvAKzoEeVDfTf/qoFrveFvRrXdmM+f+HT6OlVV5ak7oVmnGwkwWMYlA+REoa8mo7a0JElWmkL4ksvvX/BCb/1EKlLCTQmV6Dn2ybITexSJ+nSM+K7sgTbkbTdCX84c8=</signature>
+    </product>
+    <product deploymenttype="" expire="2018-11-24" licensetype="trial" major="2" name="pdfCalligraph" platform="any">
+        <signature>eSaAYhM4up9qxhQl+t4RlUAUoO322cX8O5b1svlRmoYV5A/aobCe6QnigAshjkeT/QFpZNrPR7EHdxiJvV1RIbMPAToq2cjyU39gbkKwJ7g92ANxtHVfBr+Dj844g66RLRqhjo2HDVv6Wlf2KmjxD5jm1omSgq1bwzrqJrCQ2mOVArdmpCaWVx89KLmTJvki6hxftCkiYvlYxWm+pU66bgEUBnbWXCEnjJtoq/mBX6Zzm6N1yEAz1gPwfApAkEJHABCfEaR1+ZpeUZzq+N9LZwZqXJANsPVCgVGmYUt6EFlHU+YHvQWrVyXWs1x//KyxsDwwa1Q5PApCTy0zRP8H9BFruMMED7NyX0mzACi9B3NV5qskdDsh005q3YBZKtE3+Ky3ZZU/MQ2qvi+K5QT034SdpNidkhUWvTYuvTGAQmgxQrTHSVd4B5DAzCVkw6oa/S3PvDL7q9BJFgfWeJ6L4hvOTstgvbNiJrcVrNICoPiFrH24iuTl5yCtBkTM07ZbOJc7Er8DUtupOBion8Uy/aNbabShvZANQdq7mwTf24ISndy4AgZ2YwYER3PHUsPeizadeVZ/IkPsRHXAwA9XqAfYOYJYiCokCfAqbQd8Tf+ee1Aweu5TpifA2xH8aN1skkWS1fWcoxWnYGDFnIbFWUUkO9LD41Bv3LGE/5Vk3nM=</signature>
+    </product>
+    <product deploymenttype="" expire="2018-11-24" licensetype="trial" major="2" name="pdfHtml" platform="any">
+        <signature>LTOiu6wmkw9ENzofRNaG3Iwpiz7fimZsUWyu5rPf8vMZvzJnTObPScMk/VfdnutM/9y6RbJjqjkQooE7L+cDurE3wZWk1U5PMtW3ScqrHDlBaXytWThrrIy2W715aHTarx+2CM0OVaeocgbdz0SLQQro6kXUI3iKUZgIGw7+AOZZt8auMe5me3V8KY/GHQmyJlDxcCXPd0WQY9keVij6j3Rr5qaOlniss6d0wTqQDIaJ6oYYfTeL6T3FXHHaQu6YZ7I8EPZIcl4uOnOdQ4Bm8Cg7WO2fDmd1r2wRgfUBauJ5BdzgB+KgdmBmpDj5kRZ3JA8GhZrbH95h/3F0SjDF3h6kcbZO32AeKfyzqaq28A1lTkfQ9V+r/Y5Kj7Yn9UelNOGoYwGJUJjYLfbImu2LwAuV+Mbghn1sC6GCH0+VFP+/8aqHPur8VqTKQRYGgWs0Wlz/vtGDhHdiAeRWCDvAAcYlBPdif9WRzBsdOrfNXBTzKNoJ2BeADsmOqPZDOu78R8EXUs9e78xpJn/NJslWmgK0J7ByXczzz7JZ6uABdS6KjyKsQzUYGGnVAvbaqDBHlP+lM1qEJm0WyEp75J2auX6g84e/5i3fYeWCPZA/9Fp+yE5aUEdZoBGrH2h7QPmR8Pk7hNnEavdhpJ+wgChkSWp2YAJRSsExpKZrIVi5enk=</signature>
+    </product>
+    <product deploymenttype="" expire="2018-11-24" licensetype="trial" major="2" name="pdfXfa" platform="any">
+        <signature>dJ3HQyUOy7o88UHZBn13tba8qkgioH02YdZpxfJknDLhIxF8MSBPXZ2TRnzo9EteKQhSywyoJ+QyLR/YvBusrLnANhDKw01NFB+yPNen5hPjITHX98YZMWmDWxilJvq6y0yTvTHc93xdsoE1bBPWYcJq488p3LnWlhPon8u1he3W8EEfWNxg/JDIRAezTIKg4rT9ncbSOPcUoO99feqmNPAMgvxMZZDMAX28FtzG/TEtyAKJnOhFI0xS6f7D7CEDsiXU/LCiFQ7SkwtYnJmVPjmHf2R+JaPLlq/tURANexV4uP+yjEi01xvYN5t0TLMOirhiaUndFG7m0hGN6+8u5lFBtQT89NN7LY8JiJP+pu8/+ohDbu0zpRGei3AX1CY5s/Q7vE6YVlVCiKnmf29g+u94HjEnf8/I1kW2pyDvjp/r1RS3o9UqtH5k5AJ8pqh0F6ljn0v69NP41NUEycv+isb+WwXOJtmIWf9gr1y97zyxMVJGsVvt9aXZ8wRJPzf7e4H0fmJHBndtQsHnD2eYQLRgZeQZ7LUdBWVMPPX9TUFc1dnuUCF9SdoXKDFWytRRm+LC0cAaqhMTkZKPIKjz9V2hRi4FP3LOr0SMzYmqMEjWN60rPWGnEWC0lQ6b4W9UpCdpYrLfFRpDSOOY/fcWCayGHaXH8ctFuu2LvAjC7Es=</signature>
+    </product>
+    <product deploymenttype="" expire="2018-11-24" licensetype="trial" major="2" name="pdf2Data" platform="any">
+        <signature>Ao73WINqgSqz7iHxie1qTV0I+PsGgGHAmkDgUIPtv6Lrr0kGKN4XQj7fR+B9U7JbA9FsHuCqy4DYoHP//H39icyKVmOmVCLWCJcMk36qvS0viT0L5muGmaUamD/zNn3PkVckttd06HdYLrKbSmsDTA2DbPywaeTPc23Iy2tFIACC6y45ExhtSMlRax0NFdCanDbBU4taVzLCqdU6+BQiz4231emLo5nnab2iA2iA4zc96FiH4Cpezaw+4TPHY3FdOy5eHhNYndaZabjG49IF8GJXdSnLxjM6T1HPlhM3jFZG4751dXfAF9KopSIoIofekEL5OectrxIpdFasUF4uumM7LJW5Ap6jeRbG+Bdf2kXepUaOIsqPujhq11AIT5tdlnj0Wh9AdLCelcoD13JfAizyjV92Ew98RrmV0UzukiiF6aRAwr0ULsLX9erlRStawZ0y8Z4BGIMoyd7cDxA5W1QVWLnCiOLQRGYtGlfywzaUo5/Q75Gqu1gZRjhpCpni5CTjy89S0+ZUWV2J9AjcqSsvNRvnRQOUgOzndixC/po659gxWQsPTEtU3yylB6FW0PlBZV6+Y8vLsAy2MYLMe4Cyv6pqmBf32akD3lDVN2FnmAQWjLxxClyk/TdCkJD6GgjdFSLZzdLmSvHJW9RhIztjbEWttVm9zQwj4YZguNc=</signature>
+    </product>
+</license>
