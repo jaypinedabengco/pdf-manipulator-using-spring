@@ -8,8 +8,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import org.junit.Before;
@@ -22,15 +24,24 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.itextpdf.forms.PdfAcroForm;
 import com.itextpdf.forms.fields.PdfFormField;
 import com.itextpdf.forms.fields.PdfTextFormField;
+import com.itextpdf.io.font.FontConstants;
 import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.geom.Rectangle;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfName;
+import com.itextpdf.kernel.pdf.PdfPage;
 import com.itextpdf.kernel.pdf.PdfReader;
 import com.itextpdf.kernel.pdf.PdfString;
 import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
+import com.itextpdf.layout.Canvas;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Text;
+import com.itextpdf.layout.property.AreaBreakType;
 import com.itextpdf.licensekey.LicenseKey;
 
 @RunWith(SpringRunner.class)
@@ -59,20 +70,24 @@ public class ItextCheckIfTextWillExceedForm {
 
 		PdfAcroForm form = PdfAcroForm.getAcroForm(pdfDoc, true);
 
-		// add text
-		Paragraph p1 = new Paragraph("Hello worldxxxxxxxxxxxxxxxxxxxx");
-		p1.setFixedPosition(41, 51, 100);
-		document.add(p1);
+		Rectangle mainRectangle = new Rectangle(41, 1550, 100, 18);
 
 		// add input text
-		PdfTextFormField sampleText1 = PdfFormField.createText(pdfDoc, new Rectangle(41, 51, 100, 18), "sampleText1",
-				"");
-
+		Rectangle sampleText1Rec = new Rectangle(mainRectangle);
+		sampleText1Rec.setY(mainRectangle.getBottom());
+		PdfTextFormField sampleText1 = PdfFormField.createText(pdfDoc, sampleText1Rec, "sampleText1", "");
 		// set font
 		// sampleText1.setFont(PdfFontFactory.createFont());
 		// sampleText1.setFontSize(5);
 
 		form.addField(sampleText1);
+
+		// add input text
+		Rectangle sampleText2Rec = new Rectangle(mainRectangle);
+		sampleText2Rec.setY(sampleText1Rec.getBottom() + sampleText1Rec.getHeight());
+		PdfTextFormField sampleText2 = PdfFormField.createText(pdfDoc, sampleText2Rec, "sampleText2", "");
+
+		form.addField(sampleText2);
 
 		document.close();
 		pdfDoc.close();
@@ -136,6 +151,7 @@ public class ItextCheckIfTextWillExceedForm {
 
 		// stream based input & output
 		PdfDocument pdfDoc = new PdfDocument(new PdfReader(pdfInputStream), new PdfWriter(pdfOutputStream));
+		Document document = new Document(pdfDoc);
 		PdfAcroForm form = PdfAcroForm.getAcroForm(pdfDoc, true);
 		form.setGenerateAppearance(true);
 
@@ -145,11 +161,11 @@ public class ItextCheckIfTextWillExceedForm {
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
 		// reference_id && actual text
-		List<String> addendum = new ArrayList<>();
+		Map<Integer, String> addendum = new HashMap<>();
 		textFields.forEach((name, textField) -> {
 
 			// will get this from the mapping
-			String text = "I'm the long and wind";
+			String text = "I'm the long and wind asdf";
 
 			float originalFontSize = getFontSize(textField);
 			PdfFont font = getFont(pdfDoc, textField);
@@ -160,7 +176,8 @@ public class ItextCheckIfTextWillExceedForm {
 			// if exceed, try to apply logic for minifying text
 			if (willExceed) {
 				// will check if text will fit after 3 tries
-				float fontSizeThatWillFit = getFontSizeThatWillFitTextContainer(font, originalFontSize, rectangle, text, 3, 1);
+				float fontSizeThatWillFit = getFontSizeThatWillFitTextContainer(font, originalFontSize, rectangle, text,
+						3, 1);
 
 				// change font size, so that it will fit
 				if (fontSizeThatWillFit > 0) {
@@ -168,20 +185,140 @@ public class ItextCheckIfTextWillExceedForm {
 				} else {
 
 					// add to addendum
-					addendum.add(text);
-					int addendumId = addendum.size();
+					// addendum.add(text);
+					int addendumId = addendum.size() + 1;
+					addendum.put(addendumId, text);
+
 					// change text
 					text = "addendum # " + addendumId;
 				}
 			}
 
 			textField.setValue(text);
-			
+
 		});
 
+		// add addendum
+		if (addendum.size() > 0) {
+			pdfDoc.addNewPage();
+			document.add(new AreaBreak(AreaBreakType.LAST_PAGE));
+
+			// add per text
+			for (Entry<Integer, String> entry : addendum.entrySet()) {
+				int id = entry.getKey();
+				String content = entry.getValue();
+
+				
+				PdfFont boldFont = PdfFontFactory.createFont(FontConstants.HELVETICA_BOLD);
+				Text label = new Text("Addendum # " + id + " : ").setFont(boldFont);
+				Text value = new Text(content);
+
+				Paragraph p = new Paragraph(label).add(new Text("\n")).add(value);
+				document.add(p);
+			}
+		}
+
+		document.close();
 		pdfDoc.close();
 
 	}
+
+//	// @Test
+//	public void addToAddendumIfTextExceedUsingCanvas() throws IOException {
+//		FileInputStream pdfInputStream = new FileInputStream(new File(ACRO_PDF_OUTPUT_LOCATION));
+//		FileOutputStream pdfOutputStream = new FileOutputStream(new File(ACRO_PDF_OUTPUT_LOCATION_WITH_CONTENT));
+//
+//		// stream based input & output
+//		PdfDocument pdfDoc = new PdfDocument(new PdfReader(pdfInputStream), new PdfWriter(pdfOutputStream));
+//		Document document = new Document(pdfDoc);
+//		PdfAcroForm form = PdfAcroForm.getAcroForm(pdfDoc, true);
+//		form.setGenerateAppearance(true);
+//
+//		Map<String, PdfFormField> textFields = form.getFormFields().entrySet().stream()
+//				.filter(entry -> PdfName.Tx.equals(entry.getValue().getFormType())
+//						|| PdfName.Text.equals(entry.getValue().getFormType()))
+//				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+//
+//		// reference_id && actual text
+//		Map<Integer, String> addendum = new HashMap<>();
+//		textFields.forEach((name, textField) -> {
+//
+//			// will get this from the mapping
+//			String text = "I'm the long and wind asdf";
+//
+//			float originalFontSize = getFontSize(textField);
+//			PdfFont font = getFont(pdfDoc, textField);
+//			Rectangle rectangle = getRectangle(textField);
+//
+//			boolean willExceed = willTextExceedContainer(font, originalFontSize, rectangle, text);
+//
+//			// if exceed, try to apply logic for minifying text
+//			if (willExceed) {
+//				// will check if text will fit after 3 tries
+//				float fontSizeThatWillFit = getFontSizeThatWillFitTextContainer(font, originalFontSize, rectangle, text,
+//						3, 1);
+//
+//				// change font size, so that it will fit
+//				if (fontSizeThatWillFit > 0) {
+//					textField.setFontSize(fontSizeThatWillFit);
+//				} else {
+//
+//					// add to addendum
+//					// addendum.add(text);
+//					int addendumId = addendum.size() + 1;
+//					addendum.put(addendumId, text);
+//
+//					// change text
+//					text = "addendum # " + addendumId;
+//				}
+//			}
+//
+//			textField.setValue(text);
+//
+//		});
+//
+//		// add addendum
+//		if (addendum.size() > 0) {
+//			// document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
+//			// add new page
+//
+//			// create canvas for last page
+//			PdfPage page = pdfDoc.addNewPage();
+//			PdfCanvas pdfCanvas = new PdfCanvas(page);
+//
+//			PageSize pageSize = pdfDoc.getDefaultPageSize();
+//
+//			float margin = 36;
+//			Rectangle baseRectangle = new Rectangle(margin, pageSize.getHeight() - margin,
+//					pageSize.getWidth() - (margin * 2), 40);
+//			for (Entry<Integer, String> entry : addendum.entrySet()) {
+//				int id = entry.getKey();
+//				String content = entry.getValue();
+//
+//				Text label = new Text("Addendum # " + id + " : " + content);
+//				Text value = new Text(content);
+//
+//				Rectangle rectangle = new Rectangle(baseRectangle);
+//				rectangle.setY(baseRectangle.getBottom() - baseRectangle.getHeight());
+//
+//				// add rectangle to canvas
+//				pdfCanvas.rectangle(rectangle);
+//
+//				Canvas canvas = new Canvas(pdfCanvas, pdfDoc, rectangle);
+//				canvas.add(new Paragraph(label).add(new Text("\n")).add(value));
+//				canvas.close();
+//
+//				pdfCanvas.stroke();
+//
+//				baseRectangle = rectangle;
+//			}
+//
+//		}
+//
+//		document.close();
+//		pdfDoc.close();
+//
+//	}
 
 	/**
 	 * 
@@ -229,11 +366,12 @@ public class ItextCheckIfTextWillExceedForm {
 	 * @param fontSize
 	 * @return
 	 */
-//	private boolean willTextExceedContainer(PdfDocument document, PdfFormField field, String text, float fontSize) {
-//		PdfFont font = getFont(document, field);
-//		Rectangle rectangle = getRectangle(field);
-//		return willTextExceedContainer(font, fontSize, rectangle, text);
-//	}
+	// private boolean willTextExceedContainer(PdfDocument document, PdfFormField
+	// field, String text, float fontSize) {
+	// PdfFont font = getFont(document, field);
+	// Rectangle rectangle = getRectangle(field);
+	// return willTextExceedContainer(font, fontSize, rectangle, text);
+	// }
 
 	/**
 	 * 
@@ -259,7 +397,8 @@ public class ItextCheckIfTextWillExceedForm {
 	 * @param textSizePerReduction
 	 * @return
 	 */
-	private float getFontSizeThatWillFitTextContainer(PdfFont font, float fontSize, Rectangle rectangle, String text, int reduction, int textSizePerReduction) {
+	private float getFontSizeThatWillFitTextContainer(PdfFont font, float fontSize, Rectangle rectangle, String text,
+			int reduction, int textSizePerReduction) {
 		boolean ableToFit = false;
 		float adjustableFontSize = fontSize;
 		do {
