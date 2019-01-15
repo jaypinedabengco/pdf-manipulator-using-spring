@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.aspose.pdf.CheckboxField;
 import com.aspose.pdf.Document;
 import com.aspose.pdf.Field;
+import com.aspose.pdf.Font;
 import com.aspose.pdf.TextBoxField;
 
 @RunWith(SpringRunner.class)
@@ -20,6 +21,16 @@ import com.aspose.pdf.TextBoxField;
 public class GetAllFormFieldInformation {
 	private static final String TEST_FILES_LOCATION = "src/main/resources/test/aspose/acroform";
 	private static final String ACRO_PDF_INPUT_LOCATION = TEST_FILES_LOCATION + "/input/SampleAcroForm.pdf";
+	
+	@Test
+	public void getAcroPdfFontInformation() {
+		Document pdfDocument = new Document(ACRO_PDF_INPUT_LOCATION);
+		
+		Font[] fonts = pdfDocument.getFontUtilities().getAllFonts();
+		Arrays.asList(fonts). forEach(font -> {
+			System.out.println(font.getFontName());
+		});
+	}
 	
 	@Test
 	public void getAcroPdfInformation() {
