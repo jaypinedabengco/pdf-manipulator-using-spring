@@ -49,3 +49,4 @@
 hs_err_pid*
 
 **/**/output/*.pdf
+tmp_file_*
